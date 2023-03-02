@@ -1,11 +1,14 @@
 import { Box, Container, Typography } from "@mui/material";
-import getRequest from "../../utils/GetRequest";
-import { useEffect } from "react";
+import { getRequest } from "../../utils/GetRequest";
+import { useContext, useEffect } from "react";
 import Select from "../Select/Select";
 import Category from "../Select/Category";
+import { cityContext, categoryContext } from "../../store/APIContext";
 export default function MainSection() {
+  const [cityState, _] = useContext(cityContext);
+
   useEffect(() => {
-    getRequest();
+    getRequest(cityState);
   }, []);
   return (
     <Container maxWidth={"lg"}>

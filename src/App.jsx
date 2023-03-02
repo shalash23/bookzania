@@ -1,6 +1,7 @@
 import { Box, Button, CssBaseline, Typography } from "@mui/material";
 import * as React from "react";
 import NavBar from "./components/NavBar/NavBar.jsx";
+import { APIContext } from "./store/APIContext.jsx";
 import { themeOptions } from "./utils/theme";
 import {
   ThemeProvider,
@@ -19,57 +20,59 @@ export default function App() {
     <React.Fragment>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <Container
-          disableGutters={true}
-          maxWidth={false}
-          sx={{
-            backgroundImage: `url(${background})`,
-            backgroundSize: "100% 100%",
-            backgroundRepeat: "no-repeat",
-            minHeight: "80vh",
-          }}
-        >
-          <NavBar />
-          <Box
+        <APIContext>
+          <Container
+            disableGutters={true}
+            maxWidth={false}
             sx={{
-              m: "auto",
-              mt: 8,
-
-              width: "min-content",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
+              backgroundImage: `url(${background})`,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+              minHeight: "80vh",
             }}
           >
-            <Typography
-              variant="h2"
-              component="h1"
+            <NavBar />
+            <Box
               sx={{
-                fontFamily: "Shantell Sans",
-                color: "#E5E3E4",
-                textTransform: "uppercase",
-                textAlign: "center",
-                mb: 4,
+                m: "auto",
+                mt: 8,
+
+                width: "min-content",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              Welcome to BookZania
-            </Typography>
-            <Typography
-              variant="body1"
-              component="p"
-              sx={{
-                color: "#E5E3E4",
-                mb: 4,
-              }}
-            >
-              Discover Egypt like never before. Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Et, tenetur.
-            </Typography>
-            <Button variant="contained">Contact us</Button>
-          </Box>
-        </Container>
-        <MainSection />
+              <Typography
+                variant="h2"
+                component="h1"
+                sx={{
+                  fontFamily: "Shantell Sans",
+                  color: "#E5E3E4",
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  mb: 4,
+                }}
+              >
+                Welcome to BookZania
+              </Typography>
+              <Typography
+                variant="body1"
+                component="p"
+                sx={{
+                  color: "#E5E3E4",
+                  mb: 4,
+                }}
+              >
+                Discover Egypt like never before. Lorem ipsum, dolor sit amet
+                consectetur adipisicing elit. Et, tenetur.
+              </Typography>
+              <Button variant="contained">Contact us</Button>
+            </Box>
+          </Container>
+          <MainSection />
+        </APIContext>
       </ThemeProvider>
     </React.Fragment>
   );

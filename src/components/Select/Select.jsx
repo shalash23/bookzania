@@ -4,12 +4,13 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { cityContext } from "../../store/APIContext";
 
 export default function BasicSelect() {
-  const [location, setLocation] = React.useState("");
+  const [cityState, setCityState] = React.useContext(cityContext);
 
   const handleChange = (event) => {
-    setLocation(event.target.value);
+    setCityState(event.target.value);
   };
 
   return (
@@ -19,12 +20,12 @@ export default function BasicSelect() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={location}
+          value={cityState}
           label="Location"
           onChange={handleChange}
         >
           <MenuItem value={"cairo"}>Cairo</MenuItem>
-          <MenuItem value={"Sharm%20%EL%20%sheikh"}>Sharm El-Sheikh</MenuItem>
+          <MenuItem value={"sharm%20el%20sheikh"}>Sharm El-Sheikh</MenuItem>
           <MenuItem value={"hurghada"}>Hurghada</MenuItem>
         </Select>
       </FormControl>

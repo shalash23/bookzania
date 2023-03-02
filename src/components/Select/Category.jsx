@@ -4,12 +4,13 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { categoryContext } from "../../store/APIContext";
 
 export default function BasicSelect() {
-  const [category, setCategory] = React.useState("");
+  const [categoryState, setCategoryState] = React.useContext(categoryContext);
 
   const handleChange = (event) => {
-    setCategory(event.target.value);
+    setCategoryState(event.target.value);
   };
 
   return (
@@ -19,13 +20,13 @@ export default function BasicSelect() {
         <Select
           labelId="category-select-label"
           id="category-select"
-          value={category}
+          value={categoryState}
           label="Category"
           onChange={handleChange}
         >
           <MenuItem value={"accomodations"}>Accomodations</MenuItem>
           <MenuItem value={"amusements"}>Amusements</MenuItem>
-          <MenuItem value={"cultural"}>cultural</MenuItem>
+          <MenuItem value={"cultural"}>Cultural</MenuItem>
         </Select>
       </FormControl>
     </Box>
