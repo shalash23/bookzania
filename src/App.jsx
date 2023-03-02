@@ -7,8 +7,9 @@ import {
   createTheme,
   responsiveFontSizes,
 } from "@mui/material/styles";
-import { Container } from "@mui/system";
+import { Container } from "@mui/material";
 import background from "./assets/background4.jpg";
+import MainSection from "./components/Mainsection/MainSection.jsx";
 
 export default function App() {
   let theme = createTheme(themeOptions);
@@ -68,6 +69,7 @@ export default function App() {
             <Button variant="contained">Contact us</Button>
           </Box>
         </Container>
+        <MainSection />
       </ThemeProvider>
     </React.Fragment>
   );

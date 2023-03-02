@@ -17,6 +17,7 @@ export default function NavBar() {
           backdropFilter: "blur(2px)",
         }}
         variant={"outlined"}
+        elevation={0}
       >
         <Toolbar>
           <IconButton
