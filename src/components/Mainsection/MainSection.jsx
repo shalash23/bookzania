@@ -3,18 +3,32 @@ import { getRequest } from "../../utils/GetRequest";
 import { useContext, useEffect, useState } from "react";
 import Select from "../Select/Select";
 import Category from "../Select/Category";
+import Radius from "../Select/Radius";
 import { cityContext, categoryContext } from "../../store/APIContext";
+import Cards from "../cards/Cards";
 export default function MainSection() {
   const [cityState, _] = useContext(cityContext);
-  console.log(cityState);
-  const [cityDimensions, setCityDimensions] = useState({
-    lon: null,
-    lat: null,
-  });
+  const [categoryState, __] = useContext(categoryContext);
+  const [responseData, setResponseData] = useState();
+  const [cityDimensions, setCityDimensions] = useState({});
 
   useEffect(() => {
-    getRequest(cityState);
+    (async () => {
+      if (!cityState) return;
+      try {
+        const res = await getRequest(cityState);
+        setResponseData(res[0]);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
   }, [cityState]);
+
+  useEffect(() => {
+    if (!responseData) return;
+    setCityDimensions({ lon: responseData.lon, lat: responseData.lat });
+    console.log(cityDimensions);
+  }, [responseData]);
   return (
     <Container maxWidth={"lg"}>
       <Box sx={{ mt: 8 }}>
@@ -37,7 +51,13 @@ export default function MainSection() {
         >
           <Select />
           <Category />
+          <Radius />
         </Box>
+        <Cards
+          lon={cityDimensions.lon}
+          lat={cityDimensions.lat}
+          category={categoryState}
+        />
       </Box>
     </Container>
   );

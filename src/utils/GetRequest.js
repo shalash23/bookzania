@@ -3,5 +3,5 @@ export async function getRequest(city) {
     ${city}&country=eg&apikey=${import.meta.env.VITE_API_KEY}`;
   const request = await fetch(url);
   const response = await request.json();
-  return response;
+  return [response];
 }
